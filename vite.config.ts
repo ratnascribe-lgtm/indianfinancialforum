@@ -10,6 +10,19 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  vite: {
+    optimizeDeps: {
+      // Discover shared UI dependencies before serving the first page. Late discovery
+      // can leave an open preview mixing old React DOM and new React module URLs.
+      include: [
+        '@radix-ui/react-slot',
+        'class-variance-authority',
+        'clsx',
+        'tailwind-merge',
+        'lucide-react',
+      ],
+    },
+  },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
