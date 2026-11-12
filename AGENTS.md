@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Keep shared navigation and footer in the root shell, with each content screen in its own TanStack leaf route, so navigation and page metadata remain consistent.
+- Reuse screen primitives from the IFF component module and semantic CSS tokens; extracted reference photographs are CDN asset pointers rather than embedded screenshots.
+- Keep application forms explicitly unconnected until a submission service is requested; validation must never claim a message was delivered.

@@ -1,0 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { Callout, Hero, Insights, Section } from '@/components/iff';
+import { pageHead } from '@/lib/site';
+export const Route = createFileRoute('/knowledge-hub')({ head: () => pageHead('Knowledge Hub & Perspectives', 'Explore perspectives on financial leadership, digital lending and the future of India’s BFSI ecosystem.'), component: Knowledge });
+function Knowledge() { return <><Hero eyebrow="KNOWLEDGE & INSIGHTS" title={<>Perspectives shaping<br />the future of <em>BFSI.</em></>} description="Ideas, perspectives and practical intelligence from people working at the centre of India’s financial ecosystem." action="Contribute Your Expertise" to="/speaking" /><Section eyebrow="FROM THE IFF COMMUNITY" title="Research, insights & perspectives"><Insights /></Section><Callout title="Bring your perspective to the conversation." action="Explore Speaking Opportunities" to="/speaking" /></>; }
