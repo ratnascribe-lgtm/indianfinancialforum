@@ -2,3 +2,4 @@
 - [x] Add the linked Knowledge Hub view and working page interactions.
 - [x] Verify desktop/mobile pages and navigation; keep submissions explicitly unconnected.
 - [x] Update Organisations content and photographs from the supplied HTML, preserve shared styling, and verify the page.
+- [ ] Update Professionals content and photographs from the supplied HTML, preserve shared styling, and verify the page.
