@@ -1,4 +1,4 @@
 - [x] Recreate the eight supplied Stitch screens with shared navigation and footer.
 - [x] Add the linked Knowledge Hub view and working page interactions.
 - [x] Verify desktop/mobile pages and navigation; keep submissions explicitly unconnected.
-- [ ] Update Organisations content and photographs from the supplied HTML, preserve shared styling, and verify the page.
+- [x] Update Organisations content and photographs from the supplied HTML, preserve shared styling, and verify the page.
