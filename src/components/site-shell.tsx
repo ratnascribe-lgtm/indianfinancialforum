@@ -3,9 +3,10 @@ import { useState } from 'react';
 import { ArrowRight, Menu, Search, X, CircleUserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { navigation } from '@/lib/site';
+import logo from '@/assets/iff-logo.svg.asset.json';
 
 export function Logo({ inverse = false }: { inverse?: boolean }) {
-  return <Link to="/" aria-label="Indian Financial Forum home" className={`logo ${inverse ? 'logo-inverse' : ''}`}><span className="logo-symbol" aria-hidden="true">◌</span><span>INDIAN<br />FINANCIAL<br />FORUM</span></Link>;
+  return <Link to="/" aria-label="Indian Financial Forum home" className={`logo ${inverse ? 'logo-inverse' : ''}`}><img src={logo.url} alt="Indian Financial Forum" width={145} height={50} /></Link>;
 }
 export function Header() {
   const [open, setOpen] = useState(false);
