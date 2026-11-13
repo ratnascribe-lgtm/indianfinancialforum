@@ -504,7 +504,7 @@
 .org-hero { position: relative; background: var(--section); overflow: hidden; }
 .professional-community-intro { margin-top: -18px; margin-bottom: 28px; }
 .professional-community-intro h3 { color: var(--teal); margin-bottom: 8px; }
-.professional-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--border); }
+.professional-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--border); }
 .professional-tabs button { border-radius: 0; min-height: 58px; height: auto; white-space: normal; padding: 14px 12px; border-bottom: 2px solid transparent; color: var(--muted-foreground); text-align: center; }
 .professional-tabs button.selected { border-color: var(--teal); color: var(--primary); background: var(--secondary); }
 .professional-community-panel { padding-top: 30px; }
