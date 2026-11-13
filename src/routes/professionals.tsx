@@ -1,5 +1,80 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Action, Callout, FeatureGrid, Hero, Section, Stats } from '@/components/iff';
+import { useState } from 'react';
+import { BrainCircuit, TrendingUp, ShieldCheck, Coins, ChartNoAxesCombined, CreditCard, LockKeyhole, Users, BookOpen, Briefcase, MessageCircle, CalendarDays, Megaphone } from 'lucide-react';
+import { Action, FeatureGrid, Section } from '@/components/iff';
+import { Button } from '@/components/ui/button';
 import { pageHead } from '@/lib/site';
-export const Route = createFileRoute('/professionals')({ head: () => pageHead('The Voice of India’s Financial Community', 'Connect, collaborate and create impact with India’s C-suite financial leadership network.'), component: Professionals });
-function Professionals() { return <><Hero dark eyebrow="EXCLUSIVE LEADERSHIP NETWORK · BFSI C-SUITE & REGULATORS" title={<>The Voice of India’s <em>Financial<br />Community.</em></>} description="Connecting senior decision-makers across banks, NBFCs, insurance, asset management, and fintech to foster trusted dialogue, collaborative policy movements, and systemic impact." action="Request Membership Access"><Action secondary to="/about">Explore Community</Action></Hero><div className="professional-stat-band"><div className="container"><Stats items={ [['850+', 'Senior Institutional Members'], ['₹42L Cr+', 'Collective Assets'], ['98%', 'C-Suite Representation'], ['40+', 'Closed-Door Sessions']] } /></div></div><Section eyebrow="01 / INSTITUTION" title="Institutional Credibility Meets Modern FinTech Energy" description="An invitation-led platform for progressive financial leaders, collaborative discourse and meaningful institutional impact."><FeatureGrid items={[{title:'Connect',text:'High-value networks with C-suite leaders, regulators and institutional experts across the financial services spectrum.',link:'Initiate Business Dialogue'},{title:'Collaborate',text:'Cross-institutional working groups accelerating innovative policy frameworks with agile, high-growth financial businesses.',link:'Cross-Ecosystem Initiatives'},{title:'Create Impact',text:'Outcome-oriented policy recommendations, executive leadership whitepapers and shared industry intelligence.',link:'Regulatory Whitepapers'}]} /></Section><section className="quote-band"><div className="container"><span className="eyebrow">STRATEGIC MANDATE</span><blockquote>“A leadership network is not another generic networking group. We will co-create a platform with discretion, seniority, and non-promotional governance.”</blockquote><Action secondary to="/about">Review Governance Charter</Action></div></section><Section eyebrow="02 / ECOSYSTEM" title="Uniting the Decision-Makers Shaping India’s Financial Fabric"><FeatureGrid columns={5} items={['Commercial Banks & FIs','NBFCs & Housing Finance','Life & General Insurance','Asset Management & PE','FinTech & Risk Infra'].map(t => ({title:t,text:'Sector-focused executive networks connecting institutional peers and experienced leaders.',link:'Explore Network'}))} /></Section><Section blue eyebrow="03 / BFSI INTELLIGENCE" title="Market Insights & Sentiment Index Q1 2025"><div className="insight-layout"><div><h3>Priority Adoption Velocity Matrix</h3>{[['Digital Credit Penetration & Fraud','78'],['AI-Assisted Underwriting & Risk','57'],['Cross-Border Settlement Efficiency','43'],['Climate & Green Finance Frameworks','32']].map(([t,n]) => <div className="market-row" key={t}><div><span>{t}</span><strong>{n}%</strong></div><progress value={n} max="100" /></div>)}</div><div><span className="eyebrow">INSTITUTIONAL RESEARCH BRIEF</span><h3>Navigating Liquidity Dynamics & Risk under RBI Master Directions</h3><p>A practical overview of systemic resilience and emerging priorities across India’s evolving financial landscape.</p><Action secondary to="/knowledge-hub">Explore Research</Action></div></div></Section><Section eyebrow="04 / ROUNDTABLES" title="Curated Closed-Door Leadership Assemblies"><FeatureGrid items={[{title:'Future of Sovereign Digital Assets & DLT Interoperability',text:'Focused conversations on digital infrastructure and institutional finance.',link:'Express Roundtable Interest'},{title:'NBFC Capital Adequacy & Cross-Sector Credit Syndication',text:'Experienced leaders discussing capital, credit and regulatory priorities.',link:'Express Roundtable Interest'},{title:'Generative AI Risk Frameworks for Regulated BFSI Entities',text:'An executive perspective on responsible adoption and emerging AI risk.',link:'Express Roundtable Interest'}]} /></Section><Section blue eyebrow="05 / MEMBERSHIP" title="Executive Membership Vetting Pipeline"><FeatureGrid columns={4} items={[{title:'01 · Candidate Nomination',text:'Nomination by the existing network or direct expression of interest.'},{title:'02 · Credentials Review',text:'Review of regulatory seniority, institutional leadership and professional experience.'},{title:'03 · Secretariat Review',text:'Assessment of peer relevance and contribution to institutional dialogue.'},{title:'04 · Executive Induction',text:'Formal access to private leadership conversations and curated sessions.'}]} /></Section><Callout title="Initiate Private Dialogue" text="For senior leadership, board practitioners and independent experts, a personal conversation is the beginning of meaningful connection." action="Request Executive Appointment" /></>; }
+import gathering from '@/assets/professionals-gathering.jpg.asset.json';
+import skyline from '@/assets/professionals-skyline.jpg.asset.json';
+
+export const Route = createFileRoute('/professionals')({
+  head: () => pageHead('For Professionals', 'Join a thriving network of BFSI professionals through industry-focused communities, exclusive member benefits and opportunities to connect, learn and collaborate.'),
+  component: Professionals,
+});
+
+const communities = [
+  { title: 'Sectoral Chapters', description: 'Stay close to the conversations shaping your part of the industry.', items: [
+    { name: 'AI in Banking', icon: BrainCircuit }, { name: 'FinTech', icon: TrendingUp },
+    { name: 'Insurance', icon: ShieldCheck }, { name: 'Wealthtech', icon: Coins },
+    { name: 'Risk & Analytics', icon: ChartNoAxesCombined }, { name: 'Payments & Lending', icon: CreditCard },
+    { name: 'Data Privacy & Security', icon: LockKeyhole },
+  ] },
+  { title: 'City Chapters', description: 'Build stronger professional connections closer to where you are.', items: ['Delhi NCR', 'Chandigarh', 'Chennai', 'Jaipur', 'Mumbai', 'Pune', 'Hyderabad', 'Bengaluru', 'Dubai'].map(name => ({ name, icon: Users })) },
+  { title: 'Interest-Based Communities', description: 'Go deeper into the ideas and themes you care about.', items: ['Co-lending', 'Drone', 'Healthcare Financing', 'AI Community', 'Green Financing', 'DPI Group'].map(name => ({ name, icon: BookOpen })) },
+  { title: 'Hiring Opportunities', description: 'Stay closer to the people and opportunities shaping your next move.', items: ['Technology & Engineering', 'Insurance', 'Lending', 'Payments'].map(name => ({ name, icon: Briefcase })) },
+];
+
+function Professionals() {
+  const [selected, setSelected] = useState(0);
+  const current = communities[selected] ?? communities[0];
+  if (!current) return null;
+  return <div className="professionals-page">
+    <section className="org-hero">
+      <img className="org-hero-image" src={gathering.url} alt="Professionals networking at an IFF gathering" fetchPriority="high" />
+      <div className="container org-hero-inner"><div className="hero-copy">
+        <h1>For Professionals</h1>
+        <p>Join a thriving network of BFSI professionals through industry-focused communities, exclusive member benefits and opportunities to connect, learn and collaborate.</p>
+        <div className="hero-buttons"><Action>Become a Member</Action></div>
+      </div></div>
+    </section>
+
+    <Section blue id="community" eyebrow="Your IFF network" title="Choose Your Community">
+      <div className="professional-community-intro"><h3>Find your people. Grow your network.</h3><p>Explore communities designed around your industry and professional interests.</p></div>
+      <div className="professional-tabs" role="tablist" aria-label="Community types">
+        {communities.map((community, index) => <Button key={community.title} id={`community-tab-${index}`} role="tab" aria-selected={selected === index} aria-controls="community-panel" tabIndex={selected === index ? 0 : -1} variant="ghost" className={selected === index ? 'selected' : ''} onClick={() => setSelected(index)} onKeyDown={event => {
+          let next = index;
+          if (event.key === 'ArrowRight') next = (index + 1) % communities.length;
+          else if (event.key === 'ArrowLeft') next = (index + communities.length - 1) % communities.length;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = communities.length - 1;
+          else return;
+          event.preventDefault(); setSelected(next); document.getElementById(`community-tab-${next}`)?.focus();
+        }}>{community.title}</Button>)}
+      </div>
+      <div id="community-panel" className="professional-community-panel" role="tabpanel" aria-labelledby={`community-tab-${selected}`} tabIndex={0}>
+        <h3>{current.title}</h3><p>{current.description}</p>
+        <div className="professional-community-grid">{current.items.map(item => { const Icon = item.icon; return <article key={item.name}><Icon size={30} aria-hidden="true" /><h4>{item.name}</h4></article>; })}</div>
+        <div className="section-end"><Action secondary to={selected === 3 ? '/job-seekers' : '/contact'}>{selected === 3 ? 'Explore Hiring Opportunities' : 'Explore All Communities'}</Action></div>
+      </div>
+    </Section>
+
+    <Section id="benefits" eyebrow="Being part of IFF" title="Membership Benefits" description="Make the most of your IFF membership through access, insights and opportunities to collaborate.">
+      <FeatureGrid items={[
+        { title: 'Join exclusive WhatsApp communities', text: 'Join exclusive WhatsApp communities', icon: MessageCircle },
+        { title: 'Access curated industry events', text: 'Access curated industry events', icon: CalendarDays },
+        { title: 'Connect with peers and industry leaders', text: 'Connect with peers and industry leaders', icon: Users },
+        { title: 'Receive member-only insights & editorial', text: 'Receive member-only insights & editorial', icon: BookOpen },
+        { title: 'Participate in knowledge-sharing initiatives', text: 'Participate in knowledge-sharing initiatives', icon: BrainCircuit },
+        { title: 'Discover speaking and collaboration opportunities', text: 'Discover speaking and collaboration opportunities', icon: Megaphone },
+      ]} />
+      <div className="section-end"><Action>Become a Member</Action></div>
+    </Section>
+
+    <section className="section org-final" id="join">
+      <img src={skyline.url} alt="Professionals networking against a city skyline at dusk" loading="lazy" />
+      <div className="container"><h2>Be Part of the Conversations Shaping BFSI</h2><p>Join a growing community of professionals committed to learning, collaboration and industry impact.</p>
+        <div className="hero-buttons"><Action>Become a Member</Action><Action secondary>Contact Us</Action></div>
+      </div>
+    </section>
+  </div>;
+}
