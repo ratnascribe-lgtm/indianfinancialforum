@@ -1,5 +1,72 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Action, Callout, FeatureGrid, Hero, Partners, Section, photos } from '@/components/iff';
+import { Download, Handshake, Users, MessagesSquare, Lightbulb, Network, Megaphone, Target, TrendingUp, BookOpen } from 'lucide-react';
+import { Action, Eyebrow, FeatureGrid, Section } from '@/components/iff';
+import { Button } from '@/components/ui/button';
 import { pageHead } from '@/lib/site';
-export const Route = createFileRoute('/organisations')({ head: () => pageHead('Institutional Partnerships', 'Position your organisation at the centre of Indian financial leadership through IFF partnerships.'), component: Organisations });
-function Organisations() { return <><Hero eyebrow="For Organisations" title={<>Position Your Brand at the<br />Center of Indian Financial<br />Leadership</>} description="India’s top commercial banks, NBFCs, fintech pioneers, and tier-one technology enterprises partner with the Indian Financial Forum for an enriched regulatory-compliant dialogue, orchestrated closed-door executive roundtables, visibility, institutional brand authority, and access to premier leadership talent across the BFSI spectrum." image={photos.community} caption="Executive Assembly · Mumbai" action="Explore Institutional Partnerships" stats={ [['5,000+', 'C-Suite Leaders Engaged'], ['84%', 'Tier-1 BFSI Coverage'], ['42+', 'Roundtables Hosted']] } /><Section blue eyebrow="INSTITUTIONAL CAPABILITIES" title="Strategic Value Pillars for BFSI Organisations" description="Designed specifically to transcend traditional marketing noise, our engagement architecture focuses on boardroom-level influence, policy alignment and verified executive stakeholder access."><FeatureGrid columns={4} items={[{title:'Executive Brand Visibility & Thought Leadership',text:'Keynote addresses, plenary panels and institutional whitepaper reports positioned to reach BFSI decision-makers.'},{title:'Closed-Door Roundtables',text:'Create intimate, invitation-only Chatham House conversations with C-suite and institutional leaders.'},{title:'BFSI Talent & Leadership Access',text:'Direct pathways to pre-vetted domain specialists, independent directors and emerging executive cohorts.'},{title:'Strategic Ecosystem Co-Creation',text:'Collaborate directly with regulators, researchers and technology partners on initiatives with lasting impact.'}]} /></Section><Section centered eyebrow="COLLABORATIVE FRAMEWORK" title="Institutional Engagement Tiers" description="Select an engagement tier aligned with your strategic interests, leadership objectives and institutional mandate."><div className="tier-grid">{[{title:'Roundtable & Summit Host',tag:'FORMAT FOCUS',items:['Curated roundtables and C-suite dialogues','Co-branded executive sessions and plenary panels','Focused cross-sector industry assemblies','Exclusive executive networking']},{title:'Annual Consortium Partner',tag:'APEX TIER',items:['Permanent presence on IFF Institutional Advisory Council','Guaranteed keynote speaking slots','Curated institutional introductions','Full-year institutional access','Dedicated senior pipeline connections']},{title:'Research & Knowledge Hub Partner',tag:'INTELLECTUAL CAPITAL',items:['Co-branded whitepaper and research briefs','Thought leadership across executive networks','Dedicated research launch sessions','Permanent hosting in the IFF Knowledge Repository']}].map((tier,i) => <article key={tier.title} className={i===1 ? 'tier-card featured-tier':'tier-card'}><span className="eyebrow">{tier.tag}</span><h3>{tier.title}</h3><p>Meaningful institutional partnerships, executive visibility, and collaborative industry dialogue.</p><ul>{tier.items.map(x => <li key={x}>✓ {x}</li>)}</ul><Action secondary={i!==1}>{i===1 ? 'Apply for Consortium Fellowship' : 'Initiate Partnership Dialogue'}</Action></article>)}</div></Section><Section blue eyebrow="TRUSTED ECOSYSTEM" title="Leading Institutional Partners"><Partners /></Section><section className="section"><div className="container testimonial"><span className="quote-symbol">“</span><blockquote>Partnering with the Indian Financial Forum provides institutions with meaningful, qualitative connections through thematic roundtables, cross-institutional dialogue, and shared industry perspectives.</blockquote><p>Institutional Partnership · Executive Leadership Network</p></div></section><Callout title="Ready to partner with India’s apex financial community?" text="Our corporate relations team designs tailored partnership frameworks built around strategic goals, working sessions, roundtables and research cycles." action="Submit Institutional Inquiry" /></>; }
+import roundtable from '@/assets/organisations-roundtable.jpg.asset.json';
+import panel from '@/assets/organisations-panel.jpg.asset.json';
+import reception from '@/assets/organisations-reception.jpg.asset.json';
+
+export const Route = createFileRoute('/organisations')({
+  head: () => pageHead('For Organisations', 'Partner with IFF to engage decision-makers, build brand credibility and create meaningful connections across the BFSI ecosystem.'),
+  component: Organisations,
+});
+
+function Organisations() {
+  return <div className="organisations-page">
+    <section className="org-hero">
+      <img className="org-hero-image" src={roundtable.url} alt="Senior BFSI leaders in a strategic roundtable discussion" fetchPriority="high" />
+      <div className="container org-hero-inner">
+        <div className="hero-copy">
+          <h1>For Organisations</h1>
+          <p>Partner With Us to build credibility, engage decision-makers and create meaningful connections across the financial ecosystem.</p>
+          <div className="hero-buttons"><Action>Partner With Us</Action></div>
+        </div>
+      </div>
+    </section>
+
+    <Section id="partnerships" eyebrow="How we can work together" title="There’s more than one way to make an impact." description="From focused leadership conversations to wider community engagement, we create partnership opportunities around what your organisation wants to achieve.">
+      <FeatureGrid items={[
+        { title: 'Strategic Partnerships', text: 'Build long-term associations around shared industry priorities.', icon: Handshake },
+        { title: 'Sponsorship Opportunities', text: 'Put your brand alongside relevant conversations, communities and experiences.', icon: Users },
+        { title: 'Executive Roundtables', text: 'Engage senior decision-makers through focused, high-value discussions.', icon: MessagesSquare },
+        { title: 'Thought Leadership', text: 'Bring your expertise and point of view into conversations that matter to BFSI.', icon: Lightbulb },
+        { title: 'Community Engagement', text: 'Connect meaningfully with professionals across sectors, interests and markets.', icon: Network },
+        { title: 'Brand Collaborations', text: 'Create relevant campaigns, experiences and initiatives with the IFF ecosystem.', icon: Megaphone },
+      ]} />
+      <div className="section-end"><Action secondary>Explore Partnership Opportunities</Action></div>
+    </Section>
+
+    <section className="conversation-band org-editorial">
+      <div className="container">
+        <img src={panel.url} alt="BFSI leaders on stage at an industry discussion" loading="lazy" />
+        <div>
+          <Eyebrow>Partnerships that matter</Eyebrow>
+          <h2>The right partnership puts your brand in the right room.</h2>
+          <p>With the right people. Around the right conversation. At the right time.</p>
+        </div>
+      </div>
+    </section>
+
+    <Section eyebrow="Why partner with IFF" title="Be visible where the right conversations are happening." description="IFF brings together professionals, leaders and organisations from across BFSI, creating opportunities for brands to participate with relevance and purpose.">
+      <FeatureGrid items={[
+        { title: 'Reach the Right Audience', text: 'Connect with a curated community of BFSI professionals.', icon: Target },
+        { title: 'Meet Industry Leaders', text: 'Create opportunities to engage senior voices and decision-makers.', icon: Users },
+        { title: 'Build Brand Credibility', text: 'Strengthen visibility in an environment built around industry relevance.', icon: TrendingUp },
+        { title: 'Shape Better Conversations', text: 'Co-create discussions around the issues, ideas and opportunities affecting BFSI.', icon: MessagesSquare },
+        { title: 'Back Knowledge-Led Initiatives', text: 'Support platforms designed for learning, insight and professional exchange.', icon: BookOpen },
+        { title: 'Build Stronger Relationships', text: 'Create deeper connections across the wider financial ecosystem.', icon: Network },
+      ]} />
+      <div className="section-end"><span title="The partnership brochure has not been supplied."><Button size="lg" variant="outline" disabled><Download />Download Partnership Brochure</Button></span></div>
+    </Section>
+
+    <section className="section org-final" id="join">
+      <img src={reception.url} alt="Senior BFSI leaders at an evening industry reception" loading="lazy" />
+      <div className="container">
+        <h2>Create meaningful industry impact.</h2>
+        <p>Whether you want to partner, sponsor, collaborate or engage the ecosystem, we can shape an opportunity around what you are trying to achieve.</p>
+        <Action>Partner With IFF</Action>
+      </div>
+    </section>
+  </div>;
+}
