@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
-import { BrainCircuit, TrendingUp, ShieldCheck, Coins, ChartNoAxesCombined, CreditCard, LockKeyhole, Users, BookOpen, Briefcase, MessageCircle, CalendarDays, Megaphone } from 'lucide-react';
+import { BrainCircuit, TrendingUp, ShieldCheck, Coins, ChartNoAxesCombined, CreditCard, LockKeyhole, Users, BookOpen, MessageCircle, CalendarDays, Megaphone } from 'lucide-react';
 import { Action, FeatureGrid, Section } from '@/components/iff';
 import { Button } from '@/components/ui/button';
 import { pageHead } from '@/lib/site';
@@ -21,7 +21,6 @@ const communities = [
   ] },
   { title: 'City Chapters', description: 'Build stronger professional connections closer to where you are.', items: ['Delhi NCR', 'Chandigarh', 'Chennai', 'Jaipur', 'Mumbai', 'Pune', 'Hyderabad', 'Bengaluru', 'Dubai'].map(name => ({ name, icon: Users })) },
   { title: 'Interest-Based Communities', description: 'Go deeper into the ideas and themes you care about.', items: ['Co-lending', 'Drone', 'Healthcare Financing', 'AI Community', 'Green Financing', 'DPI Group'].map(name => ({ name, icon: BookOpen })) },
-  { title: 'Hiring Opportunities', description: 'Stay closer to the people and opportunities shaping your next move.', items: ['Technology & Engineering', 'Insurance', 'Lending', 'Payments'].map(name => ({ name, icon: Briefcase })) },
 ];
 
 function Professionals() {
@@ -54,7 +53,7 @@ function Professionals() {
       <div id="community-panel" className="professional-community-panel" role="tabpanel" aria-labelledby={`community-tab-${selected}`} tabIndex={0}>
         <h3>{current.title}</h3><p>{current.description}</p>
         <div className="professional-community-grid">{current.items.map(item => { const Icon = item.icon; return <article key={item.name}><Icon size={30} aria-hidden="true" /><h4>{item.name}</h4></article>; })}</div>
-        <div className="section-end"><Action secondary to={selected === 3 ? '/job-seekers' : '/contact'}>{selected === 3 ? 'Explore Hiring Opportunities' : 'Explore All Communities'}</Action></div>
+        <div className="section-end"><Action secondary>Explore All Communities</Action></div>
       </div>
     </Section>
 
