@@ -266,6 +266,8 @@
 .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
 .stats > div { padding: 25px; background: var(--background); text-align: center; }
 .stats strong { display: block; font: 800 35px var(--font-display); color: var(--primary); }
+.stats strong > span { font: inherit; color: inherit; margin: 0; }
+.animated-stats strong { font-variant-numeric: tabular-nums; }
 .stats span { display: block; font-size: 12px; margin-top: 8px; color: var(--muted-foreground); }
 .compact-stats { display: flex; margin-top: 36px; gap: 32px; }
 .compact-stats > div { text-align: left; padding: 0 20px 0 0; background: transparent; border-right: 1px solid var(--border); }

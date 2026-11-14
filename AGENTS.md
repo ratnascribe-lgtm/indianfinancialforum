@@ -32,4 +32,5 @@ use the editor.
 - Keep shared navigation and footer in the root shell, with each content screen in its own TanStack leaf route, so navigation and page metadata remain consistent.
 - Reuse screen primitives from the IFF component module and semantic CSS tokens; extracted reference photographs are CDN asset pointers rather than embedded screenshots.
 - Keep application forms explicitly unconnected until a submission service is requested; validation must never claim a message was delivered.
+- Keep count-up behavior opt-in on shared Stats and trigger it once on visibility, respecting reduced motion, so static statistics on other pages remain unchanged.
 - Pre-optimize shared UI dependencies in Vite so first-page dependency discovery does not mix React module generations in an already-open preview.
