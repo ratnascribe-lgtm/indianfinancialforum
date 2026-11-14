@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { useState, type ReactNode, type ComponentType } from 'react';
+import { useEffect, useRef, useState, type ReactNode, type ComponentType } from 'react';
 import { ArrowRight, ShieldCheck, Upload, CheckCircle2, Users, Landmark, Network, BookOpen, Sparkles, Globe, Briefcase, MessageSquare, Mic, CalendarDays, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import career from '@/assets/career-meeting.jpg.asset.json';
@@ -16,7 +16,38 @@ export function Action({ children, to = '/contact', secondary = false }: { child
 export function Eyebrow({ children }: { children: ReactNode }) { return <div className="eyebrow"><span />{children}</div>; }
 export function Section({ children, title, eyebrow, description, blue = false, centered = false, id }: { children?: ReactNode; title?: string; eyebrow?: string; description?: string; blue?: boolean; centered?: boolean; id?: string }) { return <section id={id} className={`section ${blue ? 'section-blue' : ''}`}><div className="container">{title && <div className={`section-heading ${centered ? 'centered' : ''}`}><Eyebrow>{eyebrow}</Eyebrow><h2>{title}</h2>{description && <p>{description}</p>}</div>}{children}</div></section>; }
 export function Hero({ eyebrow, title, description, image, caption, action = 'Become a Member', to = '/contact', stats, children, dark = false }: { eyebrow: string; title: ReactNode; description: string; image?: string; caption?: string; action?: string; to?: Destination; stats?: [string, string][]; children?: ReactNode; dark?: boolean }) { return <section className={`page-hero ${dark ? 'hero-dark' : ''} ${image ? 'has-image' : ''}`}><div className="container hero-grid"><div className="hero-copy"><Eyebrow>{eyebrow}</Eyebrow><h1>{title}</h1><p>{description}</p><div className="hero-buttons"><Action to={to}>{action}</Action>{children}</div>{stats && <Stats items={stats} compact />}</div>{image && <figure className="hero-photo"><img src={image} alt={caption || 'Financial leaders in conversation'} /><figcaption><span className="photo-icon"><Network size={19} /></span><div><strong>{caption}</strong><small>Connecting India’s financial leadership</small></div></figcaption></figure>}</div></section>; }
-export function Stats({ items, compact = false }: { items: [string, string][]; compact?: boolean }) { return <div className={compact ? 'stats compact-stats' : 'stats'}>{items.map(([value, label]) => <div key={label}><strong>{value}</strong><span>{label}</span></div>)}</div>; }
+export function Stats({ items, compact = false, animated = false }: { items: [string, string][]; compact?: boolean; animated?: boolean }) {
+  const container = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(animated ? 0 : 1);
+  useEffect(() => {
+    const element = container.current;
+    if (!animated || !element) return;
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0;
+    const finish = () => { cancelAnimationFrame(frame); setProgress(1); };
+    if (motion.matches || !('IntersectionObserver' in window)) { finish(); return; }
+    const observer = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      observer.disconnect();
+      const start = performance.now();
+      const tick = (now: number) => {
+        const elapsed = Math.min((now - start) / 1600, 1);
+        setProgress(1 - Math.pow(1 - elapsed, 3));
+        if (elapsed < 1) frame = requestAnimationFrame(tick);
+      };
+      frame = requestAnimationFrame(tick);
+    }, { threshold: 0.3 });
+    observer.observe(element);
+    const onMotionChange = () => { if (motion.matches) { observer.disconnect(); finish(); } };
+    motion.addEventListener('change', onMotionChange);
+    return () => { observer.disconnect(); cancelAnimationFrame(frame); motion.removeEventListener('change', onMotionChange); };
+  }, [animated]);
+  return <div ref={container} className={`${compact ? 'stats compact-stats' : 'stats'}${animated ? ' animated-stats' : ''}`}>{items.map(([value, label]) => {
+    const match = value.match(/^([\d,]+)(.*)$/);
+    const displayed = animated && match ? `${Math.round(Number((match[1] || '').replaceAll(',', '')) * progress).toLocaleString('en-US')}${match[2] || ''}` : value;
+    return <div key={label}><strong aria-label={animated ? value : undefined}><span aria-hidden={animated ? true : undefined}>{displayed}</span></strong><span>{label}</span></div>;
+  })}</div>;
+}
 const icons = [Landmark, Users, Network, TrendingUp, Briefcase, ShieldCheck, BookOpen, Globe, Sparkles, Mic];
 export function FeatureGrid({ items, columns = 3 }: { items: { title: string; text: string; link?: string; to?: Destination; icon?: ComponentType<{ size?: number }> }[]; columns?: number }) { return <div className={`feature-grid columns-${columns}`}>{items.map((item, i) => { const Icon = item.icon || icons[i % icons.length] || Landmark; return <article className="feature-card" key={item.title}><div className={`feature-icon tone-${i % 4}`}><Icon size={22} /></div><h3>{item.title}</h3><p>{item.text}</p>{item.link && <Link className="text-link" to={item.to || '/contact'}>{item.link}<ArrowRight size={16} /></Link>}</article>; })}</div>; }
 export function Partners() { return <div className="partners">{['SBI', 'HDFC BANK', 'ICICI BANK', 'AXIS BANK', 'Kotak', 'BAJAJ FINSERV', 'Adani'].map(name => <span key={name}>{name}</span>)}</div>; }
