@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { ArrowRight, Newspaper, Video } from 'lucide-react';
-import { Callout, Eyebrow, Hero, Section } from '@/components/iff';
+import { Callout, Eyebrow, Hero, Section, photos } from '@/components/iff';
 import { pageHead } from '@/lib/site';
 
 export const Route = createFileRoute('/knowledge-hub')({
@@ -11,6 +11,10 @@ export const Route = createFileRoute('/knowledge-hub')({
 type ContentType = 'Blogs' | 'Webinars';
 
 const typeIcons = { Blogs: Newspaper, Webinars: Video } as const;
+const thumbnails = {
+  Blogs: [photos.career, photos.conversation, photos.dialogue, photos.community],
+  Webinars: [photos.roundtable, photos.summit, photos.highlight, photos.dialogue],
+};
 
 const content: { type: ContentType; title: string; text: string; meta: string }[] = [
   { type: 'Blogs', title: 'The next phase of digital lending in India', text: 'How responsible innovation and evolving regulation are reshaping credit.', meta: '6 min read' },
@@ -35,9 +39,10 @@ function Knowledge() {
     />
     {sections.map(type => <Section key={type} title={type}>
       <div className="knowledge-grid">
-        {content.filter(item => item.type === type).map(item => {
+        {content.filter(item => item.type === type).map((item, index) => {
           const Icon = typeIcons[item.type];
           return <article className="feature-card knowledge-card" key={item.title}>
+            <img className="knowledge-thumbnail" src={thumbnails[item.type][index]} alt={`Placeholder thumbnail for ${item.title}`} width={640} height={360} loading="lazy" />
             <div className="knowledge-card-top"><Eyebrow>{item.type}</Eyebrow><Icon size={20} aria-hidden /></div>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
