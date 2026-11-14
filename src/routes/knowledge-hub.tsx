@@ -33,6 +33,7 @@ function Knowledge() {
   return <>
     <Hero
       eyebrow="KNOWLEDGE HUB"
+      action=""
       title={<>Ideas and insights from<br />the <em>BFSI</em> community.</>}
       description="Explore blogs, reports, podcasts and webinars created with India’s financial leaders."
     />
