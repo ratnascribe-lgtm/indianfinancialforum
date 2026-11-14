@@ -578,3 +578,11 @@
   .org-editorial img { height: auto; aspect-ratio: 16 / 9; margin-top: 30px; margin-bottom: 0; }
   .org-editorial > div > div { padding-block: 30px; }
 }
+
+/* Knowledge Hub */
+.knowledge-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.knowledge-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; color: var(--teal); }
+.knowledge-meta { font-size: 12px; color: var(--muted-foreground); margin-bottom: 14px; }
+.knowledge-card .text-link[aria-disabled="true"] { color: var(--muted-foreground); cursor: default; }
+@media (max-width: 900px) { .knowledge-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .knowledge-grid { grid-template-columns: 1fr; } }
