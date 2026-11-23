@@ -587,3 +587,16 @@
 .knowledge-card .text-link[aria-disabled="true"] { color: var(--muted-foreground); cursor: default; }
 @media (max-width: 900px) { .knowledge-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .knowledge-grid { grid-template-columns: 1fr; } }
+
+/* Homepage FAQ */
+.home-faq-list { max-width: 960px; margin-inline: auto; border-top: 1px solid var(--border); }
+.home-faq-item { border-color: var(--border); }
+.home-faq-trigger { min-height: 64px; gap: 20px; padding-block: 19px; color: var(--primary); font: 700 16px/1.45 var(--font-display); text-decoration: none; }
+.home-faq-trigger:hover { text-decoration: none; }
+.home-faq-trigger svg { color: var(--teal); }
+.home-faq-answer { padding-bottom: 21px; }
+.home-faq-answer p { max-width: 850px; margin: 0; font-size: 15px; line-height: 1.75; }
+@media (max-width: 640px) {
+  .home-faq-trigger { min-height: 60px; gap: 12px; padding-block: 16px; font-size: 14px; }
+  .home-faq-answer p { font-size: 14px; }
+}
