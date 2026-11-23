@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { ArrowRight, Network } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Action, Callout, EventsGrid, FeatureGrid, Hero, Insights, Partners, Section, Eyebrow, type Destination } from '@/components/iff';
 import { pageHead } from '@/lib/site';
 
@@ -12,6 +13,15 @@ const experiences: { title: string; text: string; to: Destination }[] = [
   { title: 'Events', text: 'Experience conversations that matter. Meet industry leaders at summits, executive roundtables and focused networking assemblies.', to: '/events' },
   { title: 'Knowledge Hub', text: 'Discover practical perspectives on policy, leadership, emerging technology and the future of Indian financial services.', to: '/knowledge-hub' },
 ];
+const faqs = [
+  { question: 'What is IFF, and how does it support finance networking in India?', answer: 'The Indian Financial Forum (IFF) is an exclusive, community-driven platform bringing together senior professionals and decision-makers across banking, NBFCs, insurance, fintech, asset management and other financial services sectors. Through curated finance networking opportunities, industry discussions and leadership interactions, IFF helps members build meaningful professional connections and exchange industry perspectives.' },
+  { question: 'What types of finance networking events does IFF organise?', answer: 'IFF organises curated finance networking events, including executive roundtables, leadership breakfast meetings, boardroom discussions, industry conclaves, community meetups and networking experiences. These formats encourage meaningful conversations, peer learning and collaboration among BFSI professionals.' },
+  { question: "Who can participate in IFF's finance networking opportunities?", answer: 'IFF brings together CXOs, senior executives, functional leaders and decision-makers from across the financial services ecosystem. Its networking opportunities are designed for professionals from banks, NBFCs, insurance companies, fintechs, asset managers and technology service providers.' },
+  { question: 'How are IFF events different from other banking and finance events?', answer: 'Unlike large-scale conferences focused primarily on presentations and audience reach, IFF focuses on curated interactions and community engagement. Its finance forums and networking events create opportunities for senior professionals to exchange ideas, discuss industry challenges and build relationships with relevant peers.' },
+  { question: 'Where can I find upcoming finance events and BFSI events in India?', answer: 'You can explore upcoming IFF events through the Events section of the IFF website and follow IFF on LinkedIn for announcements. The calendar features curated networking opportunities, leadership discussions and community gatherings across the financial services ecosystem.' },
+  { question: 'Does IFF provide trade finance networking opportunities?', answer: 'IFF brings together professionals from across the banking and financial services ecosystem, creating opportunities to connect with peers and industry leaders. Professionals working in trade finance can explore relevant discussions, knowledge-sharing initiatives and networking opportunities through the IFF community.' },
+  { question: 'Can I contribute to IFF through finance volunteer work or community initiatives?', answer: 'IFF encourages active participation in its professional community. Members can explore opportunities to contribute through industry insights, thought leadership, community initiatives, speaking engagements and knowledge-sharing activities. To understand current opportunities to get involved, connect with the IFF team.' },
+];
 function Home() { const [tab, setTab] = useState(0); const selected = experiences[tab]; return <>
   <Hero dark eyebrow="INDIA’S LEADING FINANCIAL FORUM" title={<>The Community Behind the<br className="desktop-break" /> Growth of a BFSI Professional</>} description="A place where you can connect, collaborate and grow." action="Join IFF" ><Action secondary to="/organisations">Partner with Us</Action></Hero>
   <div className="partner-strip container"><div><span>TRUSTED BY LEADING INSTITUTIONS ACROSS THE BFSI ECOSYSTEM</span><Link to="/organisations">Become a Partner <ArrowRight size={13} /></Link></div><Partners /></div>
@@ -21,4 +31,12 @@ function Home() { const [tab, setTab] = useState(0); const selected = experience
   <Section eyebrow="EVENTS AT IFF" title="Discover upcoming experiences at IFF." description="Curated conversations to meet peers, exchange perspectives and build relationships."><EventsGrid limit={3} /><div className="section-end"><Action secondary to="/events">View all events</Action></div></Section>
   <Section blue eyebrow="KNOWLEDGE & INSIGHTS" title="Perspectives shaping the future of BFSI." description="Ideas, perspectives and practical intelligence from people working at the centre of financial services."><Insights /><div className="section-end"><Action secondary to="/knowledge-hub">Explore Knowledge Hub</Action></div></Section>
   <Callout />
+  <Section blue eyebrow="COMMON QUESTIONS" title="Frequently Asked Questions" description="Learn more about IFF, its community and finance networking opportunities.">
+    <Accordion type="single" collapsible className="home-faq-list">
+      {faqs.map((faq, index) => <AccordionItem key={faq.question} value={`faq-${index + 1}`} className="home-faq-item">
+        <AccordionTrigger className="home-faq-trigger">{faq.question}</AccordionTrigger>
+        <AccordionContent className="home-faq-answer"><p>{faq.answer}</p></AccordionContent>
+      </AccordionItem>)}
+    </Accordion>
+  </Section>
 </>; }
