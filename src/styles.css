@@ -299,11 +299,14 @@
 .callout p { color: var(--primary-foreground); max-width: 600px; margin-bottom: 25px; opacity: .85; }
 .callout a { background: var(--background); color: var(--primary); }
 .callout-mark { opacity: .18; flex-shrink: 0; }
-.timeline { display: flex; flex-direction: column; gap: 15px; }
-.timeline > div { display: grid; grid-template-columns: 45px 200px 1fr; gap: 20px; align-items: center; padding: 20px; background: var(--section); border-radius: 5px; }
-.timeline h3 { font-size: 15px; }
-.timeline p { font-size: 14px; }
-.number-badge, .avatar-initials { width: 40px; height: 40px; display: grid; place-items: center; color: var(--primary-foreground); background: var(--brand-gradient); border-radius: 5px; font-size: 13px; font-weight: 700; }
+.journey-section { background: var(--hero); color: var(--primary-foreground); }
+.journey-section .section-heading h2 { color: var(--primary-foreground); max-width: 760px; }
+.journey-timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.journey-card { background: oklch(0.3 0.1 260); border: 1px solid oklch(0.38 0.09 260); border-radius: 6px; padding: 26px 22px; }
+.journey-card h3 { color: var(--gold); font-size: 19px; margin-bottom: 14px; }
+.journey-card p { color: var(--primary-foreground); font-size: 14px; line-height: 1.55; margin-bottom: 6px; opacity: .92; }
+.journey-card .journey-lead { font-weight: 700; opacity: 1; }
+.avatar-initials { width: 40px; height: 40px; display: grid; place-items: center; color: var(--primary-foreground); background: var(--brand-gradient); border-radius: 5px; font-size: 13px; font-weight: 700; }
 .subheading { font-size: 15px; margin-block: 30px 18px; }
 .leaders { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
 .leaders article { display: flex; align-items: center; gap: 15px; padding: 20px; background: var(--section); border-radius: 5px; }
@@ -431,6 +434,7 @@
   .columns-5 { grid-template-columns: repeat(3,1fr); }
 }
 @media (max-width: 900px) {
+  .journey-timeline { grid-template-columns: repeat(2, 1fr); }
   .volunteers-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .desktop-nav { display: none; }
   .header-actions { margin-left: auto; }
@@ -496,8 +500,8 @@
   .compact-stats > div { padding-right: 12px; }
   .compact-stats strong { font-size: 20px; }
   .compact-stats span { font-size: 9px; }
-  .timeline > div { grid-template-columns: 38px 1fr; gap: 12px; padding: 18px; }
-  .timeline p { grid-column: 2; font-size: 12px; }
+  .journey-timeline { grid-template-columns: 1fr; }
+  .journey-card { padding: 20px 16px; }
   .leaders { grid-template-columns: 1fr; gap: 12px; }
   .application-form { padding: 22px; }
   .form-grid { grid-template-columns: 1fr; gap: 18px; }
