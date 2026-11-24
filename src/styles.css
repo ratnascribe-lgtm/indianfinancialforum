@@ -434,6 +434,7 @@
   .columns-5 { grid-template-columns: repeat(3,1fr); }
 }
 @media (max-width: 900px) {
+  .journey-timeline { grid-template-columns: repeat(2, 1fr); }
   .volunteers-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .desktop-nav { display: none; }
   .header-actions { margin-left: auto; }
@@ -499,7 +500,7 @@
   .compact-stats > div { padding-right: 12px; }
   .compact-stats strong { font-size: 20px; }
   .compact-stats span { font-size: 9px; }
-  .journey-timeline { grid-template-columns: repeat(2, 1fr); }
+  .journey-timeline { grid-template-columns: 1fr; }
   .journey-card { padding: 20px 16px; }
   .leaders { grid-template-columns: 1fr; gap: 12px; }
   .application-form { padding: 22px; }
