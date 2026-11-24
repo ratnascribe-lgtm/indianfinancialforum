@@ -228,11 +228,24 @@
 .centered { margin-inline: auto; text-align: center; }
 .centered .eyebrow { justify-content: center; }
 .centered p { margin-inline: auto; }
-.partner-strip { padding-block: 28px; }
-.partner-strip > div:first-child { display: flex; justify-content: space-between; font-size: 9px; color: var(--muted-foreground); margin-bottom: 18px; gap: 20px; }
-.partner-strip a { display: flex; align-items: center; gap: 6px; color: var(--teal); }
-.partners { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
-.partners > span { display: grid; place-items: center; text-align: center; padding: 18px 5px; background: var(--background); font-family: var(--font-display); font-weight: 800; font-size: 12px; color: var(--primary); }
+.member-testimonials { padding-block: 35px 48px; }
+.member-testimonials-heading { margin-bottom: 20px; }
+.member-testimonials-heading h2 { margin: 7px 0 0; font-size: 25px; }
+.testimonial-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+.testimonial-card { display: flex; flex-direction: column; min-width: 0; min-height: 280px; padding: 20px; border: 1px solid var(--border); border-top: 3px solid var(--teal); border-radius: 4px; background: var(--background); }
+.testimonial-card-featured { border-top-color: var(--gold); }
+.testimonial-card-top { display: flex; min-height: 32px; align-items: center; justify-content: space-between; gap: 10px; }
+.testimonial-quote-mark { color: var(--teal); font: 700 46px/.85 var(--font-display); }
+.testimonial-card-top img { width: 90px; height: 26px; object-fit: contain; object-position: right center; }
+.testimonial-card blockquote { flex: 1; margin: 10px 0 20px; color: var(--foreground); font: 600 13px/1.65 var(--font-display); }
+.testimonial-card-placeholder p { flex: 1; margin: 14px 0 20px; color: var(--muted-foreground); font: 600 16px/1.6 var(--font-display); }
+.testimonial-coming-soon { color: var(--muted-foreground); font-size: 9px; font-weight: 700; }
+.testimonial-person { display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 13px; border-top: 1px solid var(--border); }
+.testimonial-avatar { display: grid; width: 38px; height: 38px; flex: 0 0 38px; place-items: center; border-radius: 50%; background: var(--secondary); color: var(--primary); font: 800 12px/1 var(--font-display); }
+.testimonial-avatar-placeholder { background: var(--section); font-size: 10px; }
+.testimonial-person strong, .testimonial-person small { display: block; }
+.testimonial-person strong { color: var(--foreground); font-size: 12px; line-height: 1.4; }
+.testimonial-person small { margin-top: 2px; color: var(--muted-foreground); font-size: 10px; }
 .impact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
 .impact-grid article { background: var(--background); padding: 25px; position: relative; }
 .impact-grid article > svg { position: absolute; right: 24px; top: 29px; color: var(--teal); }
@@ -457,9 +470,8 @@
   .desktop-break { display: none; }
   .section { padding-block: 45px; }
   .section-heading { margin-bottom: 24px; }
-  .partners { grid-template-columns: repeat(3,1fr); gap: 6px; }
-  .partners > span { font-size: 10px; padding-block: 13px; }
-  .partner-strip > div:first-child { flex-direction: column; gap: 8px; }
+  .testimonial-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .testimonial-card { padding: 17px; }
   .impact-grid, .feature-grid, .event-grid, .stats { grid-template-columns: 1fr 1fr; gap: 12px; }
   .impact-grid article { padding: 18px; }
   .impact-grid article > svg { width: 16px; right: 13px; top: 23px; }
@@ -512,6 +524,9 @@
   .tier-card a { font-size: 12px; }
   .testimonial { padding: 30px; }
   .testimonial blockquote { font-size: 19px; }
+  .member-testimonials { padding-block: 28px 36px; }
+  .testimonial-cards { grid-template-columns: 1fr; }
+  .testimonial-card { min-height: 245px; }
   .insight-layout { grid-template-columns: 1fr; gap: 20px; }
   .insight-layout > div { padding: 22px; }
   .insight-card { grid-column: span 2; }
